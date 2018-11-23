@@ -1,0 +1,351 @@
+<style>
+  .detail-content {
+    width: 100%;
+  }
+  .banner {
+    width: 100%;
+    height: 550rpx;
+    margin: 20rpx 0;
+    position: relative;
+  }
+  .detail-content {
+    width: 100%;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+  }
+  .detail-content-image {
+    width: 100%;
+  }
+  .detail-content-title {
+    font-size: 34rpx;
+    margin: 30rpx 0;
+  }
+  .detail-content-price {
+    margin: 20rpx 0;
+    font-size: 38rpx;
+  }
+  .detail-content-conmain {
+    margin: 20rpx 0;
+    width: 100%;
+  }
+  .detail-content-commain-title {
+    font-size: 50rpx;
+    font-weight: 600;
+    padding: 25rpx 0;
+  }
+  .detail-content-conmain {
+    font-size: 30rpx;
+    text-indent: 2em;
+    line-height: 1.5;
+  }
+  .detail-content-display {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    border-top: 2rpx solid #eee;
+    border-bottom: 2rpx solid #eee;
+  }
+  .detail-content-display>view {
+    width: 30%;
+    padding: 20rpx 0;
+    font-size: 30rpx;
+  }
+  .detail-content-display-jt {
+    position: absolute;
+    right: 20rpx;
+    font-size: 40rpx;
+    top: 35%;
+  }
+  .already {
+    width: 250rpx;
+    height: 80rpx;
+    background: rgba(253, 94, 232, 0.708);
+    position: absolute;
+    border-radius: 20rpx;
+    transform: translateX(-100%);
+    left: 0;
+    top: 60%;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 3.5s linear infinite;
+  }
+  .already-icon {
+    margin: 0 20rpx;
+    flex-shrink: 0;
+    width: 60rpx;
+    height: 60rpx;
+  }
+  .detail-content-name {
+    font-size: 40rpx;
+    font-weight: 600;
+  }
+  .already-icon-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+  }
+  .already-name {
+    font-size: 30rpx;
+    flex: 1;
+    padding: 0 10rpx;
+    box-sizing: border-box;
+  }
+  .detail-content-price>text {
+    font-size: 40rpx;
+    color: #FF3167;
+  }
+  .detail-content-img {
+    width: 100%;
+  }
+  .logo-image {
+    width: 100%;
+  }
+  .detail-bottom {
+    width: 100%;
+    position: fixed;
+    bottom: -2rpx;
+    left: 0;
+    background: rgba(225, 225, 225, .8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .detail-buy-btn {
+    width: 300rpx;
+    text-align: center;
+    padding: 10rpx 0;
+    height: 100%;
+    font-size: 34rpx;
+    margin: 0;
+    background: #FF3167;
+    color: #FFF;
+    border-radius: 0;
+  }
+  .detail-bottom-bom {
+    display: flex;
+    text-align: center;
+  }
+  .detail-back-home,
+  .detail-back-share {
+    text-align: center;
+    font-size: 24rpx;
+    margin: 0 20rpx;
+  }
+  .detail-back-home>icon,
+  .detail-back-share>icon {
+    display: block;
+  }
+  .detail-mark {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+  }
+  .detail-mark-top {
+    width: 100%;
+    flex: 1;
+  }
+  .detail-mark-bottom {
+    width: 100%;
+    height: 400rpx;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 20rpx 0;
+    background: #EEE;
+  }
+  .detail-mark-bottom-title {
+    font-size: 40rpx;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx 0;
+  }
+  .detail-mark-list {
+    width: 100%;
+  }
+  .detail-mark-list-item {
+    width: 100%;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+    margin: 40rpx 0;
+    font-size: 30rpx;
+  }
+  .detail-mark-list-item>view {
+    margin: 10rpx 0;
+  }
+  .detail-mark-bottom-close {
+    font-size: 50rpx;
+    margin-right: 40rpx;
+  }
+  @keyframes fadeIn {
+    0% {
+      transform: translateX(-100%)
+    }
+    20% {
+      transform: translateX(-100%)
+    }
+    50% {
+      transform: translateX(10%)
+    }
+    60% {
+      transform: translateX(10%)
+    }
+    80% {
+      transform: translateX(-100%)
+    }
+    100% {
+      transform: translateX(-100%)
+    }
+  }
+</style>
+
+<template>
+  <view class='detail'>
+    <view class="banner">
+      <swiper :syncSwiper.sync="swiperList"></swiper>
+      <view class="already">
+        <view class="already-icon">
+          <image class="already-icon-image" src="{{alreadyBug[num].icon_url}}" />
+        </view>
+        <view class="already-name">{{alreadyBug[num].nick}}</view>
+      </view>
+    </view>
+    <view class="detail-content">
+      <view class="detail-content-price"><text>￥{{detail.g_price_shop}}</text></view>
+      <view class="detail-content-name">{{detail.g_name}}</view>
+      <view class="detail-content-title">{{detail.g_title}}</view>
+      <view class="detail-content-display" @tap="display">
+        <repeat for="{{detailSelect}}" key="index">
+          <view>{{item.title}}</view>
+        </repeat>
+        <text class="detail-content-display-jt">></text>
+      </view>
+      <view>
+        <image class="logo-image" src="../img/logo.jpg" mode="widthFix" />
+      </view>
+      <view class="detail-content-commain-title">产品特点</view>
+      <view class="detail-content-conmain">{{detail.g_desc}}</view>
+      <repeat for="{{detailImage}}" key="index">
+        <image class="detail-content-img" mode="widthFix" src="{{item.gg_image}}" />
+      </repeat>
+    </view>
+    <view class="detail-bottom">
+      <view class="detail-bottom-bom">
+        <button class="detail-back-home" @tap="backHome">
+          <text>回到首页</text>
+        </button>
+        <button open-type="share" class="detail-back-share" @tap="shareFriend">
+          <text>转发好友</text>
+        </button>
+      </view>
+      <button class="detail-buy-btn">立即购买</button>
+    </view>
+    <view class="detail-mark" hidden="{{isDisplay}}">
+      <view class="detail-mark-top" @tap="displayHide"></view>
+      <view class="detail-mark-bottom">
+        <view class="detail-mark-bottom-title">
+          <icon></icon>服务说明<text @tap="displayHide" class="detail-mark-bottom-close">X</text></view>
+        <view class="detail-mark-list">
+          <repeat for="{{detailSelect}}" key="index">
+            <view class="detail-mark-list-item">
+              <view>{{item.title}}</view>
+              <view>{{item.detail}}</view>
+            </view>
+          </repeat>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import detailSelect from '../components/detail'
+  import {
+    getData
+  } from '../api'
+  import Swiper from '../components/swiper'
+  export default class Detail extends wepy.page {
+    props = {};
+    data = {
+      detail: {},
+      swiperList: [],
+      alreadyBug: [],
+      animationData: {},
+      detailSelect: [],
+      detailImage: [],
+      isDisplay: true,
+      num: 0
+    };
+    components = {
+      swiper: Swiper,
+      detail: detailSelect
+    };
+    methods = {
+      display: () => {
+        this.isDisplay = false
+        this.$apply()
+      },
+      displayHide: () => {
+        this.isDisplay = true
+        this.$apply()
+      },
+      backHome: () => {
+        wepy.switchTab({
+          url: '/pages/home'
+        })
+      }
+    };
+    events = {};
+    watch = {};
+    computed = {};
+    onLoad(e) {
+      let id = e.id
+      getData(`https://wapi.xiaohongchun.com/applet/v1/goods/${id}/detail`, 'get').then((res) => {
+        this.detail = res.data.data
+        this.alreadyBug = res.data.data.random_users
+        this.detailSelect = res.data.data.instruction
+        this.detailImage = res.data.data.g_gallery.embedded
+        let banner = []
+        res.data.data.g_gallery.embedded.forEach((item, index) => {
+          banner.push(item.gg_image)
+        })
+        this.swiperList = banner
+        console.log(this.detail)
+        this.$apply()
+      })
+    }
+    onShow() {
+      var animation = wepy.createAnimation({
+        duration: 1000,
+        timingFunction: 'linear'
+      })
+      this.animation = animation
+      setInterval(() => {
+        animation.left('40rpx').step()
+        this.setData({
+          animationData: animation.export()
+        })
+      }, 2000)
+      setInterval(() => {
+        if (this.num <= 6) {
+          this.setData({
+            num: this.num += 1
+          })
+        }
+      }, 3500)
+      setInterval(() => {
+        animation.left('-310rpx').step()
+        this.setData({
+          animationData: animation.export()
+        })
+      }, 4100)
+    }
+  }
+</script>

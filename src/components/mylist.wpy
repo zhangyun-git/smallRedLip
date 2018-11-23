@@ -1,0 +1,45 @@
+<style>
+  .mylist-item{
+    width:100%;
+    display:flex;
+    align-items: center;
+    padding:30rpx 0;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #eee;
+  }
+  .mylist-item>icon{
+    margin: 0 30rpx;
+  }
+</style>
+
+<template>
+  <view class='mylist-item'>
+    <icon type="{{title}}"></icon>
+    <slot></slot>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Mylist extends wepy.component {
+    props = {
+      title: String
+    };
+
+    data = {};
+
+    components = {};
+
+    methods = {};
+
+    events = {};
+
+    watch = {};
+
+    computed = {};
+
+    onLoad() { };
+
+    onShow() { };
+  }
+</script>

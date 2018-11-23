@@ -1,0 +1,124 @@
+<style>
+.my{
+    width:100%;
+}
+.getUserInfo{
+    width:100%;
+    height:300rpx;
+    background:#f8f8f8;
+    padding:50rpx 0;
+}
+
+.getUserBtn{
+    width:300rpx;
+    height:100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    position: relative;
+    top:100rpx;
+    border:2rpx solid #CCC;
+}
+
+.userInfo{
+    width:100%;
+}
+
+.userInfo-image{
+    width:200rpx;
+    height:200rpx;
+    margin:20rpx auto;
+    margin-top: 0 ;
+}
+.userInfo-image>image{
+  width:100%;
+  height:100%;
+  border-radius: 100%;
+}
+.userInfo-name{
+    width:100%;
+    text-align: center;
+    margin:50rpx 0;
+    font-size:30rpx;
+}
+.navList-item{
+  width: 100%;
+  display: flex;
+  padding: 0 30rpx;
+  box-sizing:border-box;
+  align-items: center;
+  justify-content: space-between;
+}
+</style>
+
+<template>
+    <view class="my">
+        <view class="getUserInfo">
+            <button class="getUserBtn" open-type="getUserInfo" bindgetuserinfo="getCallback" hidden="{{isLogin}}">获取用户信息</button>
+            <view class="userInfo" hidden="{{!isLogin}}">
+                <view class="userInfo-image">
+                    <image src="{{user.avatarUrl}}"/>
+                </view>
+                <view class="userInfo-name">{{user.nickName}}</view>
+            </view>
+        </view>
+        <view class="navList">
+          <mylistItemOne title="success">
+            <view class="navList-item" bindtap="navListJump('/pages/my/indent')">
+              <view class="">我的订单</view>
+              <view>></view>
+            </view>
+          </mylistItemOne>
+          <mylistItemTwo title="warn">
+            <view class="navList-item" bindtap="navListJump('/pages/my/address')">
+              <view class="">收获地址管理</view>
+              <view>></view>
+            </view>
+          </mylistItemTwo>
+          <mylistItemThree title="info">
+            <view class="navList-item" bindtap="navListJump('/pages/my/service')">
+              <view class="">客服与帮助</view>
+              <view>></view>
+            </view>
+          </mylistItemThree>
+          <mylistItemFour title="search">
+            <view class="navList-item" bindtap="navListJump('/pages/my/aboutus')">
+              <view class="">关于我们</view>
+              <view>></view>
+            </view>
+          </mylistItemFour>
+        </view>
+    </view>
+</template>
+
+<script>
+    import wepy from 'wepy'
+    import Mylist from '../components/mylist'
+    export default class My extends wepy.page {
+      components = {
+        mylistItemOne: Mylist,
+        mylistItemTwo: Mylist,
+        mylistItemThree: Mylist,
+        mylistItemFour: Mylist
+      }
+
+      data = {
+        isLogin: false,
+        user: {}
+      }
+
+      methods = {
+        getCallback: (e) => {
+          this.isLogin = true
+          this.user = e.detail.userInfo
+          this.$apply()
+          console.log(this.user)
+        },
+        navListJump: (url) => {
+          console.log(url)
+          wepy.navigateTo({
+            url: url
+          })
+        }
+      }
+    }
+</script>

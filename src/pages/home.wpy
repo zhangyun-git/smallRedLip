@@ -1,0 +1,52 @@
+<template>
+  <view class="home">
+    <view class="banner">
+      <image class="banner-image" mode="widthFix" src="https://wicdn.xiaohongchun.com/xhc-plat/1535438633180_5GsjhDFhTy.jpg-big2x.jpg" />
+    </view>
+    <view class="shopList">
+      <shoplist :syncshopList.sync="listJson"></shoplist>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Swiper from '../components/swiper'
+  import Shoplist from '../components/shoplist'
+  export default class Home extends wepy.page {
+    config = {
+
+    }
+    components = {
+      swiper: Swiper,
+      shoplist: Shoplist
+    }
+    data = {
+      listJson: []
+    }
+    onLoad() {
+      wepy.request({
+        url: 'https://wapi.xiaohongchun.com/applet/v1/index?&tdsourcetag=s_pcqq_aiomsg',
+        dataType: 'json'
+      }).then((res) => {
+        this.listJson = res.data.data.goods
+        this.$apply()
+      })
+    }
+  }
+</script>
+
+<style>
+  .index {
+    width: 100%;
+  }
+  .banner {
+    width: 100%;
+  }
+  .banner-image {
+    width: 100%;
+  }
+  .shopList {
+    width: 100%;
+  }
+</style>

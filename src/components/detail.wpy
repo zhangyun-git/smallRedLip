@@ -1,0 +1,42 @@
+<!--  -->
+<style lang='scss'>
+.detail-select{
+    width:100%;
+    display:flex;
+}
+
+</style>
+<template>
+  <view class='detail-select'>
+      <view>满88包邮</view>
+      <view>满88包邮</view>
+      <view>满88包邮</view>
+      <view>满88包邮</view>
+      <view>满88包邮</view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class detailSelect extends wepy.component {
+    props = {
+
+    };
+
+    data = {};
+
+    components = {};
+
+    methods = {};
+
+    events = {};
+
+    watch = {};
+
+    computed = {};
+
+    onLoad() { };
+
+    onShow() { };
+  }
+</script>

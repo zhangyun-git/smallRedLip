@@ -1,0 +1,109 @@
+<template>
+  <view class="address">
+    <view class="address-logo" hidden="{{isAddress}}">
+      <view class="address-logo-banner">
+        <image mode="widthFix" src="../../img/address.jpg" />
+      </view>
+      <view class="address-logo-title">还没有地址哦</view>
+    </view>
+    <view class="address-content">
+      <radio-group bindchange="radioChange">
+        <repeat for="{{addressList}}" key="index">
+          <view class="userList-item">
+            <radio value="{{index}}" checked="{{index == 0?true:false}}" class="userList-item-radio"></radio>
+            <view class="userList-item-name">{{item.name}}</view>
+            <view class="userList-item-phone">{{item.phone}}</view>
+            <view class="userList-item-province">{{item.province}}</view>
+            <view class="userList-item-detailAdd">{{item.detailAdd}}</view>
+          </view>
+        </repeat>
+      </radio-group>
+    </view>
+    <view class="addAddress" @tap="addAddress">
+      <view>新增地址</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Address extends wepy.page {
+    data = {
+      isAddress: false,
+      addressList: []
+    }
+    onShow() {
+      const userList = wepy.getStorageSync('userList') || []
+      if (userList.length !== 0) {
+        this.isAddress = true
+      }
+      this.addressList = userList
+      this.$apply()
+    }
+    methods = {
+      addAddress: () => {
+        wepy.navigateTo({
+          url: '/pages/my/addaddress'
+        })
+      },
+      radioChange: (e) => {
+        console.log(e)
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  .address-logo-banner {
+    width: 50%;
+    margin: 100rpx auto;
+  }
+  .address-logo-banner>image {
+    width: 100%;
+  }
+  .address-logo-title {
+    width: 100%;
+    text-align: center;
+  }
+  .addAddress {
+    width: 100%;
+    height: 120rpx;
+    position: fixed;
+    bottom: 0;
+    border-top: 2rpx solid #eee;
+    background: #EEE;
+    left: 0;
+  }
+  .addAddress>view {
+    width: 250rpx;
+    height: 100%;
+    text-align: center;
+    line-height: 120rpx;
+    background: #FF3167;
+    color: #FFF;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .userList-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 20rpx 0;
+    padding: 20rpx 0;
+    border-bottom: 2rpx solid #eee;
+  }
+  .userList-item>view {
+    flex: 1;
+    text-align: center;
+    overflow: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+  .userList-item-radio {
+    margin: 0 20rpx;
+  }
+</style>

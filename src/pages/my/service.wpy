@@ -1,0 +1,138 @@
+<style>
+  .servince {
+    width: 100%；
+  }
+  .servince-card {
+    width: 90%;
+    padding: 0 40rpx;
+    box-sizing: border-box;
+    margin: 50rpx auto;
+    border: 2rpx solid #eee;
+    box-shadow: 5px 10px 10px #CCC;
+  }
+  .servince-card>view {
+    margin: 40rpx 20rpx;
+  }
+  .servince-card-title {
+    width: 100%;
+    padding: 0 10rpx;
+    border-left: 10rpx solid orangered;
+  }
+  .servince-card-content {
+    width: 100%;
+    font-size: 32rpx;
+    line-height: 1.5;
+  }
+  .servince-card-time {
+    width: 100%;
+    font-size: 32rpx;
+    line-height: 1.5;
+  }
+  .servince-btn {
+    width: 100%;
+    margin: 150rpx auto;
+    display: flex;
+    justify-content: space-around;
+    font-size: 30rpx;
+  }
+  .servince-btn>button {
+    border: none;
+    background: #FFF;
+    text-align: center;
+  }
+  .servince-btn-phone {
+    width: 100%;
+    width: 100rpx;
+    height: 100rpx;
+    background: #EEE;
+    border-radius: 100%;
+    padding: 20rpx;
+    margin: 20rpx 0;
+  }
+  .servince-btn-phone>image {
+    width: 100%;
+    height: 100%;
+  }
+  .servince-btn-wechat {
+    width: 100rpx;
+    padding: 20rpx;
+    height: 100rpx;
+    border-radius: 100%;
+    margin: 20rpx auto;
+    background: #EEE;
+  }
+  .servince-btn-wechat>image {
+    width: 100%;
+    height: 100%;
+  }
+  .servince-hint {
+    width: 100%;
+    line-height: 2;
+    color: #ccc;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 200rpx;
+    font-size: 24rpx;
+  }
+</style>
+
+<template>
+  <view class="service">
+    <view class="servince-card">
+      <view class="servince-card-title">客服与服务</view>
+      <view class="servince-card-content">
+        小主您好，
+        <view>
+          我是能为你解决一切疑难问题的客服唇唇，欢迎随时来撩哦！
+        </view>
+      </view>
+      <view class="servince-card-time">
+        服务时间
+        <view>
+          在线客服：周一至周日 9：00 - 24：00
+        </view>
+        <view>
+          电话客服：周一至周日 9：00 - 18：00
+        </view>
+      </view>
+    </view>
+    <view class="servince-btn">
+      <button bindtap="phone">
+          拨打电话
+        </button>
+      <button open-type="contact" bindtap="chatServince">
+          联系客服
+        </button>
+    </view>
+    <view class="servince-hint">
+      温馨提示
+      <view>如遇电话联系客服异常，可稍后拨打电话或选择在线客服咨询</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Service extends wepy.page {
+    config = {
+      navigationBarTitleText: '关于我们'
+    }
+    methods = {
+      phone: () => {
+        wepy.makePhoneCall({
+          phoneNumber: '18244666699',
+          success: () => {
+          }
+        })
+      },
+      onLoad() {
+        wepy.setNavigationBarTitle({
+          title: '关于我们'
+        })
+      },
+      chatServince: () => {
+        console.log(1)
+      }
+    }
+  }
+</script>

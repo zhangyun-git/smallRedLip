@@ -1,0 +1,70 @@
+<template>
+  <view class="addaddress">
+    <form bindsubmit="saveAddress">
+      <input placeholder="收件人姓名" name="name"/>
+      <input placeholder="联系电话" name="phone"/>
+      <input placeholder="省/市、区级（直辖市）" name="province"/>
+      <input placeholder="详细地址" name="detailAdd"/>
+      <view class="addAddress">
+        <button formType="submit">保存</button>
+      </view>
+    </form>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class addAddress extends wepy.page {
+    data = {
+
+    }
+    methods = {
+      saveAddress: (e) => {
+        const userList = wepy.getStorageSync('userList') || []
+        const user = {}
+        user.name = e.detail.value.name
+        user.phone = e.detail.value.phone
+        user.province = e.detail.value.province
+        user.detailAdd = e.detail.value.detailAdd
+        userList.push(user)
+        wepy.setStorageSync('userList', userList)
+        wepy.navigateBack({
+          delta: 1
+        })
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  .addaddress{
+    width:100%;
+  }
+  .addaddress input{
+    width:100%;
+    margin: 20rpx 0;
+    padding:20rpx;
+    border-bottom:2rpx solid #eee;
+  }
+  .addAddress {
+    width: 100%;
+    height: 120rpx;
+    position: fixed;
+    bottom: 0;
+    border-top: 2rpx solid #eee;
+    background: #EEE;
+    left: 0;
+  }
+  .addAddress>button {
+    width: 250rpx;
+    height: 100%;
+    border-radius: 0;
+    text-align: center;
+    line-height: 120rpx;
+    background: #FF3167;
+    color: #FFF;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+</style>

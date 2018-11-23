@@ -1,0 +1,16 @@
+<template>
+    <view class="aboutUs">
+        我是关于我们
+    </view>
+</template>
+
+<script>
+    import wepy from 'wepy'
+    export default class AboutUs extends wepy.page {
+
+    }
+</script>
+
+<style scoped>
+
+</style>

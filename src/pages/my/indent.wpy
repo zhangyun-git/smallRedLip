@@ -1,0 +1,51 @@
+<template>
+    <view class="indent">
+      <view class="indent-logo">
+        <view class="indent-logo-banner">
+          <image mode="widthFix" src="../../img/order.jpg"/>
+        </view>
+        <view class="indent-logo-title">你没有任何订单</view>
+        <button class="indent-logo-btn" bindtap="goShopping">去小红唇商场逛逛</button>
+      </view>
+      <view class="indent-content" hidden="{{isIndent}}">
+        有订单了
+      </view>
+    </view>
+</template>
+
+<script>
+    import wepy from 'wepy'
+    export default class Indent extends wepy.page {
+      data = {
+        isIndent: true
+      }
+      methods = {
+        goShopping: () => {
+          wepy.switchTab({
+            url: '/pages/home'
+          })
+        }
+      }
+    }
+</script>
+
+<style scoped>
+.indent-logo-banner{
+  width:50%;
+  margin: 100rpx auto;
+}
+.indent-logo-banner>image{
+  width:100%;
+}
+.indent-logo-title{
+  width:100%;
+  text-align: center;
+}
+.indent-logo-btn{
+  width:60%;
+  margin: 50rpx auto;
+  background:#FF3167;
+  border-radius: 60rpx;
+  color:#FFF;
+}
+</style>
