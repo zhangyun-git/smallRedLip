@@ -1,10 +1,10 @@
 # smallRedLip
 小红唇
 ## 调用接口获取数据
-## 获取产品列表
+### 获取产品列表
 @url get（https://wapi.xiaohongchun.com/applet/v1/index?&tdsourcetag=s_pcqq_aiomsg）
-## 获取详情页的数据
-@url get (`https://wapi.xiaohongchun.com/applet/v1/goods/${id}/detail`)
+### 获取详情页的数据
+@url get (https://wapi.xiaohongchun.com/applet/v1/goods/${id}/detail)
 ## 项目介绍
 本项目分为两个页面，分别是首页和我的页面
 ### 首页
